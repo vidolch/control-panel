@@ -7,7 +7,7 @@ edition = "2021"
 
 [dependencies]
 chrono = "0.4.39"
-crossbeam-channel = "0.5.13"
+crossbeam-channel = "0.5.14"
 ratatui = "0.29.0"
 serde = { version = "1.0.216", features = [ "derive" ] }
 serde_yaml = "0.9.34"
