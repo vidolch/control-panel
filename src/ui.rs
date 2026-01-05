@@ -11,7 +11,7 @@ use ratatui::{
     crossterm::event::{self, Event, KeyCode},
     layout::{Constraint, Flex, Layout, Margin, Rect},
     prelude::Backend,
-    style::{Color, Style, Stylize},
+    style::{Color, Style},
     text::Line,
     widgets::{Block, Clear, Paragraph, Scrollbar, ScrollbarOrientation, ScrollbarState},
     Frame, Terminal,
@@ -21,7 +21,10 @@ pub fn run_app<B: Backend>(
     terminal: &mut Terminal<B>,
     mut app: &mut Arc<Mutex<App>>,
     tick_rate: Duration,
-) -> io::Result<()> {
+) -> Result<(), B::Error>
+where
+    B::Error: From<io::Error>,
+{
     let mut last_tick = Instant::now();
     loop {
         terminal.draw(|f| ui(f, &mut app))?;
